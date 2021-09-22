@@ -1,0 +1,61 @@
+{% load easy_maps_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отели в Москве</title>
+</head>
+    <body>
+    <header><h1>Отели Москвы:</h1></header>
+
+    {% block content %}
+        <table>
+            {% for hotel in data %}
+                <tr>
+                    <h3> {{ hotel.name }}</h3>
+                </tr>
+
+                <tr>
+                    <span>
+                        Адресс : {{ hotel.formatted_address }}
+                    </span>
+                </tr>
+                <br>
+                <tr>
+                    <span>
+                        Иконка: <img src="{{ hotel.icon }}" alt="альтернативный текст">
+                    </span>
+                </tr>
+                <br>
+                <tr>
+                    {% if hotel.opening_hours.open_now == true %}
+                        <span>
+                                Статус : Открыто
+                        </span>
+                    {% else %}
+                        <span>
+                                Статус: Закрыто
+                        </span>
+
+                    {% endif %}
+                </tr>
+                <br>
+                <tr>
+                    <span>
+                        Рейтинг {{ hotel.rating }}
+                    </span>
+                </tr>
+                <br>
+                <tr>
+                    <span>
+                        {% easy_map hotel.formatted_address 300 400 %}
+    {#                    {% easy_map "Olimpiyskiy Prospekt, 18/1, Moscow, Russia, 129110" 300 400 %}#}
+                    </span>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% endblock %}
+
+    </body>
+</html>
