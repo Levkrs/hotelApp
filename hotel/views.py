@@ -22,4 +22,6 @@ def gapp(request):
         'data': data_hotel
     }
 
-    return render(request, 'hotel/gapp.html', context)
+    # return render(request, 'hotel/gapp.html', context)
+    return render(request, 'hotel/index.html', context)
+
